@@ -1,0 +1,12 @@
+Student Name: Nguyen Manh Phu
+Assignment: 10
+Progress test 1: 0
+Progress test 2: 0
+Workshop 1: 0
+Workshop 2: 0
+Workshop 3: 0
+Workshop 4: 0
+Workshop 5: 0
+Practical Exam: 0
+Final Exam: 10
+Average grade: 4

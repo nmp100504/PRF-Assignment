@@ -530,7 +530,7 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
     char student_name[50], input[50], filename[100];
     int choice, grade, i;
     FILE *file;
-    sprintf(filename, "CSI104/%s.txt", students[index_to_change-1].id); // generate filename based on student name
+    sprintf(filename, "CSI104/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
     // load previous grades from file if it exists
     if (access(filename, F_OK) != -1) {
@@ -677,7 +677,7 @@ void prf192_process(struct student students[], int num_students, int index_to_ch
     char student_name[50], input[50], filename[100];
     int choice, grade, i;
     FILE *file;
-    sprintf(filename, "PRF192/%s.txt", students[index_to_change-1].id); // generate filename based on student name
+    sprintf(filename, "PRF192/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
     // load previous grades from file if it exists
     if (access(filename, F_OK) != -1) {
@@ -847,7 +847,7 @@ void mae101_process(struct student students[], int num_students, int index_to_ch
     char student_name[50], input[50], filename[100];
     int choice, grade, i;
     FILE *file;
-    sprintf(filename, "MAE101/%s.txt", students[index_to_change-1].id); // generate filename based on student name
+    sprintf(filename, "MAE101/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
     // load previous grades from file if it exists
     if (access(filename, F_OK) != -1) {
