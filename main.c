@@ -80,31 +80,9 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
 void mae101_process(struct student students[], int num_students, int index_to_change);
 void prf192_process(struct student students[], int num_students, int index_to_change);
 void show_student_component_points(struct student students[], int *num_students, char* subjectName);
-int create_folder(const char *path) {
-    struct stat st = {0};
-    
-    // Check if folder exists
-    if (opendir(path) == NULL) {
-        // Create folder if it doesn't exist
-        if (stat(path, &st) == -1) {
-            mkdir(path); // 0700 sets permissions to rwx for owner only
-        }
-    }
-    else {
-        return 0;
-    }
-    
-}
+void create_folder(const char* path);
+void delete_file(char* filename);
 
-void delete_file(char* filename) {
-    // Check if file exists
-    if (access(filename, F_OK) != -1) {
-        // Delete file if it exists
-        if (remove(filename) == 0) {
-            printf("File %s deleted.\n", filename);
-        }
-    }
-}
 
 int main() {
 	printf("Component points management software for subject CEA201, CSI104, MAE101, PRF192\n");
@@ -178,7 +156,6 @@ int main() {
                 break;
             case 4:
             	print_students(students, num_students);
-            	index_to_change = 0;
 			    printf("Enter the index of the student to update: ");
 			    scanf("%d", &index_to_change);
 				while ((temp_c = getchar()) != '\n' && temp_c != EOF);
@@ -190,7 +167,6 @@ int main() {
 				break;
             case 5:
             	print_students(students, num_students);
-            	index_to_change = 0;
 			    printf("Enter the index of the student to update: ");
 			    scanf("%d", &index_to_change);
 				while ((temp_c = getchar()) != '\n' && temp_c != EOF);
@@ -202,7 +178,6 @@ int main() {
 				break;
             case 6:
             	print_students(students, num_students);
-            	index_to_change = 0;
 			    printf("Enter the index of the student to update: ");
 			    scanf("%d", &index_to_change);
 				while ((temp_c = getchar()) != '\n' && temp_c != EOF);
@@ -214,7 +189,6 @@ int main() {
 				break;
             case 7:
             	print_students(students, num_students);
-            	index_to_change = 0;
 			    printf("Enter the index of the student to update: ");
 			    scanf("%d", &index_to_change);
 				while ((temp_c = getchar()) != '\n' && temp_c != EOF);
@@ -265,6 +239,32 @@ int main() {
     return 0;
 }
 
+void delete_file(char* filename) {
+    // Check if file exists
+    if (access(filename, F_OK) != -1) {
+        // Delete file if it exists
+        if (remove(filename) == 0) {
+            printf("File %s deleted.\n", filename);
+        }
+    }
+}
+
+
+void create_folder(const char *path) {
+    struct stat st = {0};
+    
+    // Check if folder exists
+    if (opendir(path) == NULL) {
+        // Create folder if it doesn't exist
+        if (stat(path, &st) == -1) {
+            mkdir(path); // 0700 sets permissions to rwx for owner only
+        }
+    }
+    else {
+        return ;
+    }
+    
+}
 
 void print_students(struct student students[], int num_students) {
 	if(num_students == 0){
@@ -324,10 +324,10 @@ void add_student(struct student students[], int *num_students) {
 
 void show_student_component_points(struct student students[], int *num_students, char* subjectName) {
 	char filename[100];
-    int index_to_remove;
+    int index_to_update;
     printf("Enter the index of the student you want to show: ");
-    scanf("%d", &index_to_remove);
-    if (index_to_remove < 1 || index_to_remove > *num_students) {
+    scanf("%d", &index_to_update);
+    if (index_to_update < 1 || index_to_update > *num_students) {
         printf("Error: invalid index\n");
         return;
     }
@@ -335,7 +335,7 @@ void show_student_component_points(struct student students[], int *num_students,
 	FILE *file;
     char c;
 
-    sprintf(filename,"%s/ %s.txt", subjectName, students[index_to_remove-1].id);
+    sprintf(filename,"%s/ %s.txt", subjectName, students[index_to_update-1].id);
 	printf("-------------------------------------------------------------------------------\n");
     file = fopen(filename, "r");
     if (file == NULL) {
@@ -387,7 +387,6 @@ void remove_student(struct student students[], int *num_students) {
             fprintf(fp, "%d-%s-%s\n", students[i].index, students[i].name, students[i].id);
         }
         fclose(fp);
-        printf("Student list saved to file.\n");
     } else {
         printf("Error: Unable to write to file.\n");
     }
