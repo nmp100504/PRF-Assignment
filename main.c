@@ -8,57 +8,57 @@
 #define MAX_STUDENTS 100
 struct CEA201 {
     char student_name[50];
-    int assignment1_grade;
-    int assignment2_grade;
-    int exercise1_grade;
-    int exercise2_grade;
-    int exercise3_grade;
-    int exercise4_grade;
-    int final_exam_grade;
-    int average_grade;
+    float assignment1_grade;
+    float assignment2_grade;
+    float exercise1_grade;
+    float exercise2_grade;
+    float exercise3_grade;
+    float exercise4_grade;
+    float final_exam_grade;
+    float average_grade;
 };
 
 struct CSI104 {
     char student_name[50];
-    int group_presentation1_grade;
-    int group_presentation2_grade;
-    int lab1_grade;
-    int lab2_grade;
-    int progress_test1_grade;
-    int progress_test2_grade;
-    int progress_test3_grade;
-    int progress_test4_grade;
-    int final_exam_grade;
-    int average_grade;
+    float group_presentation1_grade;
+    float group_presentation2_grade;
+    float lab1_grade;
+    float lab2_grade;
+    float progress_test1_grade;
+    float progress_test2_grade;
+    float progress_test3_grade;
+    float progress_test4_grade;
+    float final_exam_grade;
+    float average_grade;
 };
 
 
 struct MAE101 {
     char student_name[50];
-    int assignment1_grade;
-    int assignment2_grade;
-    int assignment3_grade;
-    int progress_test1_grade;
-    int progress_test2_grade;
-    int progress_test3_grade;
-    int final_exam_grade;
-    int average_grade;
+    float assignment1_grade;
+    float assignment2_grade;
+    float assignment3_grade;
+    float progress_test1_grade;
+    float progress_test2_grade;
+    float progress_test3_grade;
+    float final_exam_grade;
+    float average_grade;
 };
 
 
 struct PRF192 {
     char student_name[50];
-    int assignment_grade;
-    int progress_test1_grade;
-    int progress_test2_grade;
-    int workshop1_grade;
-    int workshop2_grade;
-    int workshop3_grade;
-    int workshop4_grade;
-    int workshop5_grade;
-    int practical_exam_grade;
-    int final_exam_grade;
-    int average_grade;
+    float assignment_grade;
+    float progress_test1_grade;
+    float progress_test2_grade;
+    float workshop1_grade;
+    float workshop2_grade;
+    float workshop3_grade;
+    float workshop4_grade;
+    float workshop5_grade;
+    float practical_exam_grade;
+    float final_exam_grade;
+    float average_grade;
 };
 
 
@@ -363,13 +363,13 @@ void remove_student(struct student students[], int *num_students) {
     }
     int i;
 	char filename[100];
-	sprintf(filename, "PRF192/%s.txt", students[index_to_remove-1].id);
+	sprintf(filename, "PRF192/ %s.txt", students[index_to_remove-1].id);
 	delete_file(filename);   
-	sprintf(filename, "CSI104/%s.txt", students[index_to_remove-1].id);
+	sprintf(filename, "CSI104/ %s.txt", students[index_to_remove-1].id);
 	delete_file(filename);   
-	sprintf(filename, "CEA201/%s.txt", students[index_to_remove-1].id);
+	sprintf(filename, "CEA201/ %s.txt", students[index_to_remove-1].id);
 	delete_file(filename);   
-	sprintf(filename, "MAE101/%s.txt", students[index_to_remove-1].id);
+	sprintf(filename, "MAE101/ %s.txt", students[index_to_remove-1].id);
 	delete_file(filename);   
     for (i = index_to_remove - 1; i < *num_students - 1; i++) {
         students[i] = students[i + 1];
@@ -395,7 +395,8 @@ void remove_student(struct student students[], int *num_students) {
 void cea201_process(struct student students[], int num_students, int index_to_change) {
     struct CEA201 student_cea_point;
     char student_name[50], input[50], filename[100];
-    int choice, grade, i;
+    int choice, i;
+    float grade;
     FILE *file;
     sprintf(filename, "CEA201/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
@@ -407,14 +408,14 @@ void cea201_process(struct student students[], int num_students, int index_to_ch
             return;
         }
         fscanf(file, "Student Name: %[^\n]\n", student_cea_point.student_name);
-        fscanf(file, "Assignment 1: %d\n", &student_cea_point.assignment1_grade);
-        fscanf(file, "Assignment 2: %d\n", &student_cea_point.assignment2_grade);
-        fscanf(file, "Exercise 1: %d\n", &student_cea_point.exercise1_grade);
-        fscanf(file, "Exercise 2: %d\n", &student_cea_point.exercise2_grade);
-        fscanf(file, "Exercise 3: %d\n", &student_cea_point.exercise3_grade);
-        fscanf(file, "Exercise 4: %d\n", &student_cea_point.exercise4_grade);
-        fscanf(file, "Final Exam: %d\n", &student_cea_point.final_exam_grade);
-        fscanf(file, "Average grade: %d\n", &student_cea_point.average_grade);
+        fscanf(file, "Assignment 1: %f\n", &student_cea_point.assignment1_grade);
+        fscanf(file, "Assignment 2: %f\n", &student_cea_point.assignment2_grade);
+        fscanf(file, "Exercise 1: %f\n", &student_cea_point.exercise1_grade);
+        fscanf(file, "Exercise 2: %f\n", &student_cea_point.exercise2_grade);
+        fscanf(file, "Exercise 3: %f\n", &student_cea_point.exercise3_grade);
+        fscanf(file, "Exercise 4: %f\n", &student_cea_point.exercise4_grade);
+        fscanf(file, "Final Exam: %f\n", &student_cea_point.final_exam_grade);
+        fscanf(file, "Average grade: %f\n", &student_cea_point.average_grade);
         fclose(file);
     }
     else {
@@ -428,7 +429,7 @@ void cea201_process(struct student students[], int num_students, int index_to_ch
         student_cea_point.final_exam_grade = 0;
         student_cea_point.average_grade = 0.1*(student_cea_point.assignment1_grade + student_cea_point.assignment2_grade) 
 										+ 0.075*(student_cea_point.exercise1_grade + student_cea_point.exercise2_grade + student_cea_point.exercise3_grade + student_cea_point.exercise4_grade);
-										+ 0.3*(student_cea_point.final_exam_grade);
+										+ 0.4*(student_cea_point.final_exam_grade);
     }
 
     for (i = 0; i < num_students; i++) {
@@ -454,43 +455,43 @@ void cea201_process(struct student students[], int num_students, int index_to_ch
 				case 1:
 				printf("Enter grade for Assignment 1: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.assignment1_grade = grade;
 				break;
 				case 2:
 				printf("Enter grade for Assignment 2: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.assignment2_grade = grade;
 				break;
 				case 3:
 				printf("Enter grade for Exercise 1: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.exercise1_grade = grade;
 				break;
 				case 4:
 				printf("Enter grade for Exercise 2: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.exercise2_grade = grade;
 				break;
 				case 5:
 				printf("Enter grade for Exercise 3: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.exercise3_grade = grade;
 				break;
 				case 6:
 				printf("Enter grade for Exercise 4: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.exercise4_grade = grade;
 				break;
 				case 7:
 				printf("Enter grade for Final Exam: ");
 				fgets(input, sizeof(input), stdin);
-				sscanf(input, "%d", &grade);
+				sscanf(input, "%f", &grade);
 				student_cea_point.final_exam_grade = grade;
 				break;
 				case 8:
@@ -501,23 +502,23 @@ void cea201_process(struct student students[], int num_students, int index_to_ch
 				}
 				} while (choice != 8);
 	// write updated grades to file
-	student_cea_point.average_grade = 0.15*(student_cea_point.assignment1_grade + student_cea_point.assignment2_grade) 
+	student_cea_point.average_grade = 0.1*(student_cea_point.assignment1_grade + student_cea_point.assignment2_grade) 
 									+ 0.075*(student_cea_point.exercise1_grade + student_cea_point.exercise2_grade + student_cea_point.exercise3_grade + student_cea_point.exercise4_grade);
-									+ 0.3*(student_cea_point.final_exam_grade);
+									+ 0.4*(student_cea_point.final_exam_grade);
 	file = fopen(filename, "w");
 	if (file == NULL) {
 	    printf("Error opening file\n");
 	    return;
 	}
 	fprintf(file, "Student Name: %s\n", student_cea_point.student_name);
-	fprintf(file, "Assignment 1: %d\n", student_cea_point.assignment1_grade);
-	fprintf(file, "Assignment 2: %d\n", student_cea_point.assignment2_grade);
-	fprintf(file, "Exercise 1: %d\n", student_cea_point.exercise1_grade);
-	fprintf(file, "Exercise 2: %d\n", student_cea_point.exercise2_grade);
-	fprintf(file, "Exercise 3: %d\n", student_cea_point.exercise3_grade);
-	fprintf(file, "Exercise 4: %d\n", student_cea_point.exercise4_grade);
-	fprintf(file, "Final Exam: %d\n", student_cea_point.final_exam_grade);
-	fprintf(file, "Average grade: %d\n", student_cea_point.average_grade);
+	fprintf(file, "Assignment 1: %.2f\n", student_cea_point.assignment1_grade);
+	fprintf(file, "Assignment 2: %.2f\n", student_cea_point.assignment2_grade);
+	fprintf(file, "Exercise 1: %.2f\n", student_cea_point.exercise1_grade);
+	fprintf(file, "Exercise 2: %.2f\n", student_cea_point.exercise2_grade);
+	fprintf(file, "Exercise 3: %.2f\n", student_cea_point.exercise3_grade);
+	fprintf(file, "Exercise 4: %.2f\n", student_cea_point.exercise4_grade);
+	fprintf(file, "Final Exam: %.2f\n", student_cea_point.final_exam_grade);
+	fprintf(file, "Average grade: %.2f\n", student_cea_point.average_grade);
 	fclose(file);
 		}
 	}
@@ -527,7 +528,8 @@ void cea201_process(struct student students[], int num_students, int index_to_ch
 void csi104_process(struct student students[], int num_students, int index_to_change) {
     struct CSI104 student_csi_point;
     char student_name[50], input[50], filename[100];
-    int choice, grade, i;
+    int choice, i;
+    float grade;
     FILE *file;
     sprintf(filename, "CSI104/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
@@ -539,15 +541,15 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
             return;
         }
         fscanf(file, "Student Name: %[^\n]\n", student_csi_point.student_name);
-        fscanf(file, "Group presentation 1: %d\n", &student_csi_point.group_presentation1_grade);
-        fscanf(file, "Group presentation 2: %d\n", &student_csi_point.group_presentation2_grade);
-        fscanf(file, "Lab 1: %d\n", &student_csi_point.lab1_grade);
-        fscanf(file, "Lab 2: %d\n", &student_csi_point.lab2_grade);
-        fscanf(file, "Progress test 1: %d\n", &student_csi_point.progress_test1_grade);
-        fscanf(file, "Progress test 2: %d\n", &student_csi_point.progress_test2_grade);
-        fscanf(file, "Progress test 3: %d\n", &student_csi_point.progress_test3_grade);
-        fscanf(file, "Final Exam: %d\n", &student_csi_point.final_exam_grade);
-        fscanf(file, "Average grade: %d\n", &student_csi_point.average_grade);
+        fscanf(file, "Group presentation 1: %f\n", &student_csi_point.group_presentation1_grade);
+        fscanf(file, "Group presentation 2: %f\n", &student_csi_point.group_presentation2_grade);
+        fscanf(file, "Lab 1: %f\n", &student_csi_point.lab1_grade);
+        fscanf(file, "Lab 2: %f\n", &student_csi_point.lab2_grade);
+        fscanf(file, "Progress test 1: %f\n", &student_csi_point.progress_test1_grade);
+        fscanf(file, "Progress test 2: %f\n", &student_csi_point.progress_test2_grade);
+        fscanf(file, "Progress test 3: %f\n", &student_csi_point.progress_test3_grade);
+        fscanf(file, "Final Exam: %f\n", &student_csi_point.final_exam_grade);
+        fscanf(file, "Average grade: %f\n", &student_csi_point.average_grade);
         fclose(file);
     }
     else {
@@ -590,49 +592,49 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
 				case 1:
 					printf("Enter grade for Group presentation 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.group_presentation1_grade = grade;
 					break;
 				case 2:
 					printf("Enter grade for Group presentation 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.group_presentation2_grade = grade;
 					break;
 				case 3:
 					printf("Enter grade for Lab 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.lab1_grade = grade;
 					break;
 				case 4:
 					printf("Enter grade for Lab 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.lab2_grade = grade;
 					break;
 				case 5:
 					printf("Enter grade for Progress test 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.progress_test1_grade = grade;
 					break;
 				case 6:
 					printf("Enter grade for Progress test 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.progress_test2_grade = grade;
 					break;
 				case 7:
 					printf("Enter grade for Progress test 3: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.progress_test3_grade = grade;
 					break;
 				case 8:
 					printf("Enter grade for Final Exam: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_csi_point.final_exam_grade = grade;
 					break;
 				case 9:
@@ -653,15 +655,15 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
 	    return;
 	}
     fprintf(file, "Student Name: %s\n", student_csi_point.student_name);
-    fprintf(file, "Group presentation 1: %d\n", student_csi_point.group_presentation1_grade);
-    fprintf(file, "Group presentation 2: %d\n", student_csi_point.group_presentation2_grade);
-    fprintf(file, "Lab 1: %d\n", student_csi_point.lab1_grade);
-    fprintf(file, "Lab 2: %d\n", student_csi_point.lab2_grade);
-    fprintf(file, "Progress test 1: %d\n", student_csi_point.progress_test1_grade);
-    fprintf(file, "Progress test 2: %d\n", student_csi_point.progress_test2_grade);
-    fprintf(file, "Progress test 3: %d\n", student_csi_point.progress_test3_grade);
-    fprintf(file, "Final Exam: %d\n", student_csi_point.final_exam_grade);
-    fprintf(file, "Average grade: %d\n", student_csi_point.average_grade);
+    fprintf(file, "Group presentation 1: %.2f\n", student_csi_point.group_presentation1_grade);
+    fprintf(file, "Group presentation 2: %.2f\n", student_csi_point.group_presentation2_grade);
+    fprintf(file, "Lab 1: %.2f\n", student_csi_point.lab1_grade);
+    fprintf(file, "Lab 2: %.2f\n", student_csi_point.lab2_grade);
+    fprintf(file, "Progress test 1: %.2f\n", student_csi_point.progress_test1_grade);
+    fprintf(file, "Progress test 2: %.2f\n", student_csi_point.progress_test2_grade);
+    fprintf(file, "Progress test 3: %.2f\n", student_csi_point.progress_test3_grade);
+    fprintf(file, "Final Exam: %.2f\n", student_csi_point.final_exam_grade);
+    fprintf(file, "Average grade: %.2f\n", student_csi_point.average_grade);
     
 	fclose(file);
 		}
@@ -674,7 +676,8 @@ void csi104_process(struct student students[], int num_students, int index_to_ch
 void prf192_process(struct student students[], int num_students, int index_to_change) {
     struct PRF192 student_prf_point;
     char student_name[50], input[50], filename[100];
-    int choice, grade, i;
+    int choice, i;
+    float grade;
     FILE *file;
     sprintf(filename, "PRF192/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
@@ -687,17 +690,17 @@ void prf192_process(struct student students[], int num_students, int index_to_ch
         }
         
 	    fscanf(file, "Student Name: %[^\n]\n", student_prf_point.student_name);
-	    fscanf(file, "Assignment: %d\n", &student_prf_point.assignment_grade);
-	    fscanf(file, "Progress test 1: %d\n", &student_prf_point.progress_test1_grade);
-	    fscanf(file, "Progress test 2: %d\n", &student_prf_point.progress_test2_grade);
-	    fscanf(file, "Workshop 1: %d\n", &student_prf_point.workshop1_grade);
-	    fscanf(file, "Workshop 2: %d\n", &student_prf_point.workshop2_grade);
-	    fscanf(file, "Workshop 3: %d\n", &student_prf_point.workshop3_grade);
-	    fscanf(file, "Workshop 4: %d\n", &student_prf_point.workshop4_grade);
-	    fscanf(file, "Workshop 5: %d\n", &student_prf_point.workshop5_grade);
-	    fscanf(file, "Practical Exam: %d\n", &student_prf_point.practical_exam_grade);
-	    fscanf(file, "Final Exam: %d\n", &student_prf_point.final_exam_grade);
-	    fscanf(file, "Average grade: %d\n", &student_prf_point.average_grade);
+	    fscanf(file, "Assignment: %f\n", &student_prf_point.assignment_grade);
+	    fscanf(file, "Progress test 1: %f\n", &student_prf_point.progress_test1_grade);
+	    fscanf(file, "Progress test 2: %f\n", &student_prf_point.progress_test2_grade);
+	    fscanf(file, "Workshop 1: %f\n", &student_prf_point.workshop1_grade);
+	    fscanf(file, "Workshop 2: %f\n", &student_prf_point.workshop2_grade);
+	    fscanf(file, "Workshop 3: %f\n", &student_prf_point.workshop3_grade);
+	    fscanf(file, "Workshop 4: %f\n", &student_prf_point.workshop4_grade);
+	    fscanf(file, "Workshop 5: %f\n", &student_prf_point.workshop5_grade);
+	    fscanf(file, "Practical Exam: %f\n", &student_prf_point.practical_exam_grade);
+	    fscanf(file, "Final Exam: %f\n", &student_prf_point.final_exam_grade);
+	    fscanf(file, "Average grade: %f\n", &student_prf_point.average_grade);
         fclose(file);
     }
     else {
@@ -745,61 +748,61 @@ void prf192_process(struct student students[], int num_students, int index_to_ch
 				case 1:
 					printf("Enter grade for Assignment: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.assignment_grade = grade;
 					break;
 				case 2:
 					printf("Enter grade for Progress test 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.progress_test1_grade = grade;
 					break;
 				case 3:
 					printf("Enter grade for Progress test 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.progress_test1_grade = grade;
 					break;
 				case 4:
 					printf("Enter grade for Workshop 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.workshop1_grade = grade;
 					break;
 				case 5:
 					printf("Enter grade for Workshop 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.workshop2_grade = grade;
 					break;
 				case 6:
 					printf("Enter grade for Workshop 3: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.workshop3_grade = grade;
 					break;
 				case 7:
 					printf("Enter grade for Workshop 4: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.workshop4_grade = grade;
 					break;
 				case 8:
 					printf("Enter grade for Workshop 5: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.workshop5_grade = grade;
 					break;
 				case 9:
 					printf("Enter grade for Practical Exam: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.practical_exam_grade = grade;
 					break;
 				case 10:
 					printf("Enter grade for Final Exam: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_prf_point.final_exam_grade = grade;
 					break;
 				case 11:
@@ -821,17 +824,17 @@ void prf192_process(struct student students[], int num_students, int index_to_ch
 	    return;
 	}
 	    fprintf(file, "Student Name: %s\n", student_prf_point.student_name);
-	    fprintf(file, "Assignment: %d\n", student_prf_point.assignment_grade);
-	    fprintf(file, "Progress test 1: %d\n", student_prf_point.progress_test1_grade);
-	    fprintf(file, "Progress test 2: %d\n", student_prf_point.progress_test2_grade);
-	    fprintf(file, "Workshop 1: %d\n", student_prf_point.workshop1_grade);
-	    fprintf(file, "Workshop 2: %d\n", student_prf_point.workshop2_grade);
-	    fprintf(file, "Workshop 3: %d\n", student_prf_point.workshop3_grade);
-	    fprintf(file, "Workshop 4: %d\n", student_prf_point.workshop4_grade);
-	    fprintf(file, "Workshop 5: %d\n", student_prf_point.workshop5_grade);
-	    fprintf(file, "Practical Exam: %d\n", student_prf_point.practical_exam_grade);
-	    fprintf(file, "Final Exam: %d\n", student_prf_point.final_exam_grade);
-	    fprintf(file, "Average grade: %d\n", student_prf_point.average_grade);
+	    fprintf(file, "Assignment: %.2f\n", student_prf_point.assignment_grade);
+	    fprintf(file, "Progress test 1: %.2f\n", student_prf_point.progress_test1_grade);
+	    fprintf(file, "Progress test 2: %.2f\n", student_prf_point.progress_test2_grade);
+	    fprintf(file, "Workshop 1: %.2f\n", student_prf_point.workshop1_grade);
+	    fprintf(file, "Workshop 2: %.2f\n", student_prf_point.workshop2_grade);
+	    fprintf(file, "Workshop 3: %.2f\n", student_prf_point.workshop3_grade);
+	    fprintf(file, "Workshop 4: %.2f\n", student_prf_point.workshop4_grade);
+	    fprintf(file, "Workshop 5: %.2f\n", student_prf_point.workshop5_grade);
+	    fprintf(file, "Practical Exam: %.2f\n", student_prf_point.practical_exam_grade);
+	    fprintf(file, "Final Exam: %.2f\n", student_prf_point.final_exam_grade);
+	    fprintf(file, "Average grade: %.2f\n", student_prf_point.average_grade);
 	    
 	fclose(file);
 		}
@@ -844,7 +847,8 @@ void prf192_process(struct student students[], int num_students, int index_to_ch
 void mae101_process(struct student students[], int num_students, int index_to_change) {
     struct MAE101 student_mae_point;
     char student_name[50], input[50], filename[100];
-    int choice, grade, i;
+    int choice, i;
+    float grade;
     FILE *file;
     sprintf(filename, "MAE101/ %s.txt", students[index_to_change-1].id); // generate filename based on student name
 
@@ -857,14 +861,14 @@ void mae101_process(struct student students[], int num_students, int index_to_ch
         }
         
 	    fscanf(file, "Student Name: %[^\n]\n", student_mae_point.student_name);
-	    fscanf(file, "Assignment 1: %d\n", &student_mae_point.assignment1_grade);
-	    fscanf(file, "Assignment 2: %d\n", &student_mae_point.assignment2_grade);
-	    fscanf(file, "Assignment 3: %d\n", &student_mae_point.assignment3_grade);
-	    fscanf(file, "Progress test 1: %d\n", &student_mae_point.progress_test1_grade);
-	    fscanf(file, "Progress test 2: %d\n", &student_mae_point.progress_test2_grade);
-	    fscanf(file, "Progress test 3: %d\n", &student_mae_point.progress_test3_grade);
-	    fscanf(file, "Final Exam: %d\n", &student_mae_point.final_exam_grade);
-	    fscanf(file, "Average grade: %d\n", &student_mae_point.average_grade);
+	    fscanf(file, "Assignment 1: %f\n", &student_mae_point.assignment1_grade);
+	    fscanf(file, "Assignment 2: %f\n", &student_mae_point.assignment2_grade);
+	    fscanf(file, "Assignment 3: %f\n", &student_mae_point.assignment3_grade);
+	    fscanf(file, "Progress test 1: %f\n", &student_mae_point.progress_test1_grade);
+	    fscanf(file, "Progress test 2: %f\n", &student_mae_point.progress_test2_grade);
+	    fscanf(file, "Progress test 3: %f\n", &student_mae_point.progress_test3_grade);
+	    fscanf(file, "Final Exam: %f\n", &student_mae_point.final_exam_grade);
+	    fscanf(file, "Average grade: %f\n", &student_mae_point.average_grade);
         fclose(file);
     }
     else {
@@ -904,43 +908,43 @@ void mae101_process(struct student students[], int num_students, int index_to_ch
 				case 1:
 					printf("Enter grade for Assignment 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.assignment1_grade = grade;
 					break;
 				case 2:
 					printf("Enter grade for Assignment 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.assignment2_grade = grade;
 					break;
 				case 3:
 					printf("Enter grade for Assignment 3: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.assignment3_grade = grade;
 					break;
 				case 4:
 					printf("Enter grade for Progress test 1: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.progress_test1_grade = grade;
 					break;
 				case 5:
 					printf("Enter grade for Progress test 2: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.progress_test2_grade = grade;
 					break;
 				case 6:
 					printf("Enter grade for Progress test 3: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.progress_test3_grade = grade;
 					break;
 				case 7:
 					printf("Enter grade for Final Exam: ");
 					fgets(input, sizeof(input), stdin);
-					sscanf(input, "%d", &grade);
+					sscanf(input, "%f", &grade);
 					student_mae_point.final_exam_grade = grade;
 					break;
 				case 8:
@@ -960,14 +964,14 @@ void mae101_process(struct student students[], int num_students, int index_to_ch
 	    return;
 	}
     fprintf(file, "Student Name: %s\n", student_mae_point.student_name);
-    fprintf(file, "Assignment 1: %d\n", student_mae_point.assignment1_grade);
-    fprintf(file, "Assignment 2: %d\n", student_mae_point.assignment2_grade);
-    fprintf(file, "Assignment 3: %d\n", student_mae_point.assignment3_grade);
-    fprintf(file, "Progress test 1: %d\n", student_mae_point.progress_test1_grade);
-    fprintf(file, "Progress test 2: %d\n", student_mae_point.progress_test2_grade);
-    fprintf(file, "Progress test 3: %d\n", student_mae_point.progress_test3_grade);
-    fprintf(file, "Final Exam: %d\n", student_mae_point.final_exam_grade);
-    fprintf(file, "Average grade: %d\n", student_mae_point.average_grade);
+    fprintf(file, "Assignment 1: %.2f\n", student_mae_point.assignment1_grade);
+    fprintf(file, "Assignment 2: %.2f\n", student_mae_point.assignment2_grade);
+    fprintf(file, "Assignment 3: %.2f\n", student_mae_point.assignment3_grade);
+    fprintf(file, "Progress test 1: %.2f\n", student_mae_point.progress_test1_grade);
+    fprintf(file, "Progress test 2: %.2f\n", student_mae_point.progress_test2_grade);
+    fprintf(file, "Progress test 3: %.2f\n", student_mae_point.progress_test3_grade);
+    fprintf(file, "Final Exam: %d.2f\n", student_mae_point.final_exam_grade);
+    fprintf(file, "Average grade: %.2f\n", student_mae_point.average_grade);
     
 	fclose(file);
 		}

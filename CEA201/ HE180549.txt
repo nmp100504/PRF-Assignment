@@ -1,9 +1,0 @@
-Student Name: Nguyen Manh Phu
-Assignment 1: 10
-Assignment 2: 10
-Exercise 1: 0
-Exercise 2: 0
-Exercise 3: 0
-Exercise 4: 0
-Final Exam: 0
-Average grade: 3
